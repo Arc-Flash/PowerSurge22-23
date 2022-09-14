@@ -6,6 +6,6 @@ Lol you got it wrong bozos.
 
 /////////////////////////////
 
-This is the Arc Flash Repo for PowerPlay: the 2022-2023 Game
+This is the Power Surge Repo for PowerPlay: the 2022-2023 Game
 
 No Questions Asked
