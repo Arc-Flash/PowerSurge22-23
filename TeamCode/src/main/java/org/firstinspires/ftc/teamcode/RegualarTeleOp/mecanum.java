@@ -9,7 +9,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 
 @TeleOp(name="Robot Centric Mecannum")
-@Disabled
 public class mecanum extends OpMode {
     private Motor leftFront, rightFront, leftBack, rightBack;
     private MecanumDrive drive;
