@@ -34,7 +34,7 @@ public class mechme extends LinearOpMode {
 
         while (opModeIsActive()) {
             boolean aPress = gamepad2.a;
-            double lucas;
+            int lucas = 0;
             if (gamepad2.dpad_up) {
                 lucas = lucas - 1;
             }
