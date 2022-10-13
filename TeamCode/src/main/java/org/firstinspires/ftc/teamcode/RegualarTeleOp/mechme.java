@@ -22,34 +22,40 @@ public class mechme extends LinearOpMode {
         // Reverse left motors if you are using NeveRests
         motorFrontRight.setDirection(DcMotorSimple.Direction.REVERSE);
         motorBackRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        motorFrontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+        motorBackLeft.setDirection(DcMotorSimple.Direction.FORWARD);
         armL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        armL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        armR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
+        armL.setMode(DcMotor.RunMode.RUN_USING_ENCODERS);
+        armR.setMode(DcMotor.RunMode.RUN_USING_ENCODERS);
+        int lucas = 0;
 
         waitForStart();
 
         if (isStopRequested()) return;
 
         while (opModeIsActive()) {
-            boolean aPress = gamepad2.a;
-            int lucas = 0;
+
             if (gamepad2.dpad_up) {
-                lucas = lucas - 1;
+                lucas = lucas - 20;
             }
             else if (gamepad2.dpad_down) {
-                lucas = lucas + 1;
+                lucas = lucas(lucas) + 20;
             }
 
             armL.setTargetPosition(lucas);
             armR.setTargetPosition(lucas);
 
-            if (aPress == true) {
-                armR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                armR.setPower(1);
+            if (lucas > 0 || lucas < 0) {
                 armL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 armL.setPower(1);
+                armR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                armR.setPower(1);
+            }
+
+            if (gamepad2.y) {
+                lucas  = 0;
+                armL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             }
 
             double y = -gamepad1.left_stick_y; // Remember, this is reversed!
@@ -70,5 +76,9 @@ public class mechme extends LinearOpMode {
             motorFrontRight.setPower(frontRightPower);
             motorBackRight.setPower(backRightPower);
         }
+    }
+
+    private int lucas(int lucas) {
+        return lucas;
     }
 }
