@@ -17,6 +17,7 @@ public class mechme extends LinearOpMode {
         DcMotor motorBackRight = hardwareMap.dcMotor.get("backRight");
         DcMotor armL = hardwareMap.dcMotor.get("andrew");
         DcMotor armR = hardwareMap.dcMotor.get("klaus");
+        DcMotor potato = hardwareMap.dcMotor.get("20centpotatoes");
 
         // Reverse the right side motors
         // Reverse left motors if you are using NeveRests
@@ -28,34 +29,57 @@ public class mechme extends LinearOpMode {
         armR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armL.setMode(DcMotor.RunMode.RUN_USING_ENCODERS);
         armR.setMode(DcMotor.RunMode.RUN_USING_ENCODERS);
+        potato.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        potato.setMode(DcMotor.RunMode.RUN_USING_ENCODERS);
+
         int lucas = 0;
+        int aiden = 0;
 
         waitForStart();
 
         if (isStopRequested()) return;
 
         while (opModeIsActive()) {
-
+            /*
             if (gamepad2.dpad_up) {
-                lucas = lucas - 20;
+                lucas = lucas - 1;
             }
             else if (gamepad2.dpad_down) {
-                lucas = lucas(lucas) + 20;
+                lucas = lucas + 1;
+            }
+
+            if (gamepad2.dpad_left) {
+                aiden = aiden -1;
+            }
+            if (gamepad2.dpad_right) {
+                aiden = aiden + 1;
             }
 
             armL.setTargetPosition(lucas);
             armR.setTargetPosition(lucas);
+            potato.setTargetPosition(aiden);
 
             if (lucas > 0 || lucas < 0) {
                 armL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                armL.setPower(1);
+                armL.setPower(.2);
                 armR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                armR.setPower(1);
+                armR.setPower(.2);
+                potato.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                potato.setPower(.2);
             }
 
             if (gamepad2.y) {
-                lucas  = 0;
                 armL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                armR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            }
+            */
+            if (gamepad2.b) {
+                lucas = -100;
+            }
+
+            if (gamepad2.a) {
+                armL.setTargetPosition(lucas);
+                armR.setTargetPosition(lucas);
             }
 
             double y = gamepad1.left_stick_y; // Remember, this is reversed!
@@ -75,10 +99,13 @@ public class mechme extends LinearOpMode {
             motorBackLeft.setPower(backLeftPower);
             motorFrontRight.setPower(frontRightPower);
             motorBackRight.setPower(backRightPower);
+
+            telemetry.addData("ArmL data:", armL.getTargetPosition());
+            telemetry.addData("ArmR Target", armR.getTargetPosition());
+            telemetry.addData("ArmL current:", armL.getCurrentPosition());
+            telemetry.addData("ArmR current:", armR.getCurrentPosition());
+            telemetry.update();
         }
     }
 
-    private int lucas(int lucas) {
-        return lucas;
-    }
 }
