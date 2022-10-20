@@ -18,6 +18,7 @@ public class mechme extends LinearOpMode {
         DcMotor armL = hardwareMap.dcMotor.get("andrew");
         DcMotor armR = hardwareMap.dcMotor.get("klaus");
         DcMotor potato = hardwareMap.dcMotor.get("20centpotatoes");
+        6
 
         // Reverse the right side motors
         // Reverse left motors if you are using NeveRests
@@ -27,8 +28,8 @@ public class mechme extends LinearOpMode {
         motorBackLeft.setDirection(DcMotorSimple.Direction.FORWARD);
         armL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        armL.setMode(DcMotor.RunMode.RUN_USING_ENCODERS);
-        armR.setMode(DcMotor.RunMode.RUN_USING_ENCODERS);
+        armL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        armR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         potato.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         potato.setMode(DcMotor.RunMode.RUN_USING_ENCODERS);
 
@@ -67,20 +68,37 @@ public class mechme extends LinearOpMode {
                 potato.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 potato.setPower(.2);
             }
-
+            */
             if (gamepad2.y) {
                 armL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 armR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             }
-            */
+
             if (gamepad2.b) {
                 lucas = -100;
+            }
+
+            if (gamepad2.dpad_down) {
+                lucas--;
+            }
+            else if (gamepad2.dpad_up) {
+                lucas++;
             }
 
             if (gamepad2.a) {
                 armL.setTargetPosition(lucas);
                 armR.setTargetPosition(lucas);
             }
+
+            if (gamepad2.right_bumper) {
+                armL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                armR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                armL.setPower(1);
+                armR.setPower(1);
+            }
+
+            potato.setPower(gamepad2.right_stick_y);
+            
 
             double y = gamepad1.left_stick_y; // Remember, this is reversed!
             double x = gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
