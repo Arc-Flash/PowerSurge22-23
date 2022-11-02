@@ -94,17 +94,18 @@ public class mechme extends LinearOpMode {
             }
 
             if (gamepad2.dpad_left) {
-                lev--;
+                lev++;
                 potato.setTargetPosition(lev);
             }
-            else if (gamepad2.dpad_right) {
-                lev++;
+
+            if (gamepad2.dpad_right) {
+                lev--;
                 potato.setTargetPosition(lev);
             }
 
             if (gamepad2.left_bumper) {
                 potato.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                potato.setPower(1);
+                potato.setPower(.1);
             }
 
 
