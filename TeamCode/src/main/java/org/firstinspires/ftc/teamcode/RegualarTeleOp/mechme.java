@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.RegualarTeleOp;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -38,9 +38,9 @@ public class mechme extends LinearOpMode {
         sl.setDirection(Servo.Direction.FORWARD);
         sr.setDirection(Servo.Direction.REVERSE);
 
-        int lucas = 0;
-        int aiden = 0;
-        int lev = 0;
+        int lucas = 1;
+        int aiden = 1;
+        int lev = 1;
 
         waitForStart();
 
@@ -87,7 +87,8 @@ public class mechme extends LinearOpMode {
                 armL.setTargetPosition(lucas);
                 //armR.setTargetPosition(lucas);
             }
-            else if (gamepad2.dpad_up) {
+
+            if (gamepad2.dpad_up) {
                 lucas = lucas + 2;
                 armL.setTargetPosition(lucas);
                 //armR.setTargetPosition(lucas);
@@ -103,22 +104,14 @@ public class mechme extends LinearOpMode {
                 potato.setTargetPosition(lev);
             }
 
-            if (gamepad2.left_bumper) {
-                potato.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                potato.setPower(.1);
-            }
 
 
 
 
-            if (gamepad2.right_bumper) {
+            if (gamepad2.a) {
                 armL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                //armR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 armL.setPower(1);
-                //armR.setPower(1);
-            }
 
-            if (gamepad2.left_bumper) {
                 potato.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 potato.setPower(1);
             }
@@ -155,6 +148,9 @@ public class mechme extends LinearOpMode {
             //telemetry.addData("ArmR Target", armR.getTargetPosition());
             telemetry.addData("ArmL current:", armL.getCurrentPosition());
             //telemetry.addData("ArmR current:", armR.getCurrentPosition());
+            telemetry.addData("20 target:", potato.getTargetPosition());
+            telemetry.addData("20 current:", potato.getCurrentPosition());
+            telemetry.addData("20 power:", potato.getPower());
             telemetry.update();
         }
     }
