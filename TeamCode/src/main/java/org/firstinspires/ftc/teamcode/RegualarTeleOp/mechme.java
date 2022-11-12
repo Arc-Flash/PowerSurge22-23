@@ -40,11 +40,14 @@ public class mechme extends LinearOpMode {
 
         int lucas = 1;
         int aiden = 1;
-        int lev = 1;
+        int potatoPos = 1;
 
         waitForStart();
 
         if (isStopRequested()) return;
+
+        armL.setTargetPosition(lucas);
+        potato.setTargetPosition(aiden);
 
         while (opModeIsActive()) {
             /*
@@ -95,35 +98,35 @@ public class mechme extends LinearOpMode {
             }
 
             if (gamepad2.dpad_left) {
-                lev++;
-                potato.setTargetPosition(lev);
+                potatoPos++;
+                potato.setTargetPosition(potatoPos);
             }
 
             if (gamepad2.dpad_right) {
-                lev--;
-                potato.setTargetPosition(lev);
+                potatoPos--;
+                potato.setTargetPosition(potatoPos);
             }
 
 
 
+            armL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            armL.setPower(1);
 
 
-            if (gamepad2.a) {
-                armL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                armL.setPower(1);
+            potato.setPower(gamepad2.right_stick_y/8);
 
-                potato.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                potato.setPower(1);
-            }
+
 
             if (gamepad2.left_stick_button) {
                 sl.setPosition(1);
-            }
-            if (gamepad2.right_stick_button) {
-                sr.setPosition(1);
+                sr.setPosition(.1);
             }
 
-            //potato.setPower(gamepad2.right_stick_y);
+            if (gamepad2.right_stick_button) {
+                sr.setPosition(1);
+                sl.setPosition(.1);
+            }
+
             
 
             double y = gamepad1.left_stick_y; // Remember, this is reversed!
