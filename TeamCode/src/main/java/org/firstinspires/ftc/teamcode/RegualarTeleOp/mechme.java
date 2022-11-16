@@ -80,7 +80,7 @@ public class mechme extends LinearOpMode {
             armL.setPower(1);
 
 
-            potato.setPower(gamepad2.right_stick_y/8);
+            potato.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
 
 
@@ -96,7 +96,7 @@ public class mechme extends LinearOpMode {
 
             
 
-            double y = gamepad1.left_stick_y; // Remember, this is reversed!
+            double y = -gamepad1.left_stick_y; // Remember, this is reversed!
             double x = gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
             double rx = gamepad1.right_stick_x;
 
