@@ -119,11 +119,11 @@ public class mechme extends LinearOpMode {
 
             if (gamepad2.left_stick_button) {
                 sl.setPosition(1);
-                sr.setPosition(.1);
+                sr.setPosition(1);
             }
 
             if (gamepad2.right_stick_button) {
-                sr.setPosition(1);
+                sr.setPosition(.1);
                 sl.setPosition(.1);
             }
 
