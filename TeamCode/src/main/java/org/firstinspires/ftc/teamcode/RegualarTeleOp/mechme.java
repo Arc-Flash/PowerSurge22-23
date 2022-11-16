@@ -16,7 +16,7 @@ public class mechme extends LinearOpMode {
         DcMotor motorBackLeft = hardwareMap.dcMotor.get("backLeft");
         DcMotor motorFrontRight = hardwareMap.dcMotor.get("frontRight");
         DcMotor motorBackRight = hardwareMap.dcMotor.get("backRight");
-        DcMotor armL = hardwareMap.dcMotor.get("andrew");
+        DcMotor arm = hardwareMap.dcMotor.get("andrew");
         DcMotor potato = hardwareMap.dcMotor.get("20centpotatoes");
         Servo sl = hardwareMap.servo.get("s1");
         Servo sr = hardwareMap.servo.get("sr");
@@ -28,40 +28,40 @@ public class mechme extends LinearOpMode {
         motorBackRight.setDirection(DcMotorSimple.Direction.REVERSE);
         motorFrontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
         motorBackLeft.setDirection(DcMotorSimple.Direction.FORWARD);
-        armL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        armL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         potato.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         potato.setMode(DcMotor.RunMode.RUN_USING_ENCODERS);
         sl.setDirection(Servo.Direction.FORWARD);
         sr.setDirection(Servo.Direction.REVERSE);
 
-        int lucas = 1;
-        int aiden = 1;
-        int potatoPos = 1;
+        int sholderPosition = 1;
+        int elbowJoint = 1;
+        int potatoPos = 1; //Target position for potato motor
 
         waitForStart();
 
         if (isStopRequested()) return;
 
-        armL.setTargetPosition(lucas);
-        potato.setTargetPosition(aiden);
+        arm.setTargetPosition(sholderPosition);
+        potato.setTargetPosition(elbowJoint);
 
         while (opModeIsActive()) {
 
             if (gamepad2.y) {
-                armL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 potato.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             }
 
 
             if (gamepad2.dpad_down) {
-                lucas = lucas - 2;
-                armL.setTargetPosition(lucas);
+                sholderPosition = sholderPosition - 2;
+                arm.setTargetPosition(sholderPosition);
             }
 
             if (gamepad2.dpad_up) {
-                lucas = lucas + 2;
-                armL.setTargetPosition(lucas);
+                sholderPosition = sholderPosition + 2;
+                arm.setTargetPosition(sholderPosition);
             }
 
             if (gamepad2.dpad_left) {
@@ -76,8 +76,8 @@ public class mechme extends LinearOpMode {
 
 
 
-            armL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            armL.setPower(1);
+            arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            arm.setPower(1);
 
 
             potato.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -114,8 +114,8 @@ public class mechme extends LinearOpMode {
             motorFrontRight.setPower(frontRightPower);
             motorBackRight.setPower(backRightPower);
 
-            telemetry.addData("ArmL data:", armL.getTargetPosition());
-            telemetry.addData("ArmL current:", armL.getCurrentPosition());
+            telemetry.addData("ArmL data:", arm.getTargetPosition());
+            telemetry.addData("ArmL current:", arm.getCurrentPosition());
             telemetry.addData("20 target:", potato.getTargetPosition());
             telemetry.addData("20 current:", potato.getCurrentPosition());
             telemetry.addData("20 power:", potato.getPower());
