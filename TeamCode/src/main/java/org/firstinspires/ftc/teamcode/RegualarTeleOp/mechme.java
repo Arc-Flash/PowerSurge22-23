@@ -87,14 +87,14 @@ public class mechme extends LinearOpMode {
             elbowMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             elbowMotor.setPower(1);
 
-            //Runs when the left circular pivot button (or left stick button) is being moved
+            //Runs when the left stick is pressed down
             //Moves servos position so that they are closed
             if (gamepad2.left_stick_button) {
                 sl.setPosition(1);
                 sr.setPosition(1);
             }
 
-            //Runs when the right circular pivot button (or right stick button) is being moved
+            //Runs when the right stick is pressed down
             //Moves servos position so that they are open
             if (gamepad2.right_stick_button) {
                 sr.setPosition(.1);
