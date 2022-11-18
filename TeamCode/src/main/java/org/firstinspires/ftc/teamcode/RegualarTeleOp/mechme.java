@@ -16,8 +16,8 @@ public class mechme extends LinearOpMode {
         DcMotor motorBackLeft = hardwareMap.dcMotor.get("backLeft");
         DcMotor motorFrontRight = hardwareMap.dcMotor.get("frontRight");
         DcMotor motorBackRight = hardwareMap.dcMotor.get("backRight");
-        DcMotor arm = hardwareMap.dcMotor.get("andrew"); //Motor attatched to th eback of the robot
-        DcMotor elbowMotor = hardwareMap.dcMotor.get("20centpotatoes"); //Mototr that is locate on the arm
+        DcMotor arm = hardwareMap.dcMotor.get("andrew"); //Motor attatched to the back of the robot
+        DcMotor elbowMotor = hardwareMap.dcMotor.get("20centpotatoes"); // Motor that is locate on the arm
         Servo sl = hardwareMap.servo.get("s1");
         Servo sr = hardwareMap.servo.get("sr");
 
