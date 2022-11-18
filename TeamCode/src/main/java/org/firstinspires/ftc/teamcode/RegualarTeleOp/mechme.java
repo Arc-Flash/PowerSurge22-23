@@ -43,7 +43,7 @@ public class mechme extends LinearOpMode {
 
         // continous loop that runs after after the play button is pushed
         if (isStopRequested()) return;
-        
+
         arm.setTargetPosition(sholderPosition);
         potato.setTargetPosition(elbowJoint);
 
