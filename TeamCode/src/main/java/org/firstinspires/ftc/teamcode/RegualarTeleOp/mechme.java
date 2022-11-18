@@ -35,14 +35,15 @@ public class mechme extends LinearOpMode {
         sl.setDirection(Servo.Direction.FORWARD);
         sr.setDirection(Servo.Direction.REVERSE);
 
+        // initializing the shoulder and elbow targets at a non-zero value
         int sholderPosition = 1;
         int elbowJoint = 1;
-        int potatoPos = 1; //Target position for potato motor
 
         waitForStart();
 
+        // continous loop that runs after after the play button is pushed
         if (isStopRequested()) return;
-
+        
         arm.setTargetPosition(sholderPosition);
         potato.setTargetPosition(elbowJoint);
 
@@ -65,24 +66,21 @@ public class mechme extends LinearOpMode {
             }
 
             if (gamepad2.dpad_left) {
-                potatoPos++;
-                potato.setTargetPosition(potatoPos);
+                elbowJoint = -6;
+                potato.setTargetPosition(elbowJoint);
             }
 
             if (gamepad2.dpad_right) {
-                potatoPos--;
-                potato.setTargetPosition(potatoPos);
+                elbowJoint = 6;
+                potato.setTargetPosition(elbowJoint);
             }
 
 
 
             arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             arm.setPower(1);
-
-
             potato.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-
+            potato.setPower(1);
 
             if (gamepad2.left_stick_button) {
                 sl.setPosition(1);
@@ -96,7 +94,7 @@ public class mechme extends LinearOpMode {
 
             
 
-            double y = -gamepad1.left_stick_y; // Remember, this is reversed!
+            double y = gamepad1.left_stick_y; // Remember, this is reversed!
             double x = gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
             double rx = gamepad1.right_stick_x;
 
