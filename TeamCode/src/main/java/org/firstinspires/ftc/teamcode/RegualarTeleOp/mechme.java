@@ -41,34 +41,40 @@ public class mechme extends LinearOpMode {
 
         waitForStart();
 
-        // continous loop that runs after after the play button is pushed
+        // continuous loop that runs after after the play button is pushed
         if (isStopRequested()) return;
 
         arm.setTargetPosition(sholderPosition);
         elbowMotor.setTargetPosition(elbowJoint);
 
+        // Runs while the opmode is active
         while (opModeIsActive()) {
 
+            //Runs when
             if (gamepad2.y) {
                 arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 elbowMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             }
 
+            // Runs when the dpad is pushed down on game-pad 2
             if (gamepad2.dpad_down) {
                 sholderPosition = sholderPosition - 2;
                 arm.setTargetPosition(sholderPosition);
             }
 
+            // Runs when the dpad is pushed up on game-pad 2
             if (gamepad2.dpad_up) {
                 sholderPosition = sholderPosition + 2;
                 arm.setTargetPosition(sholderPosition);
             }
 
+            // Runs when the dpad is pushed left on game-pad 2
             if (gamepad2.dpad_left) {
                 elbowJoint = -6;
                 elbowMotor.setTargetPosition(elbowJoint);
             }
 
+            // Runs when the dpad is pushed right on game-pad 2
             if (gamepad2.dpad_right) {
                 elbowJoint = 6;
                 elbowMotor.setTargetPosition(elbowJoint);
@@ -81,11 +87,15 @@ public class mechme extends LinearOpMode {
             elbowMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             elbowMotor.setPower(1);
 
+            //Runs when the left circular pivot button (or left stick button) is being moved
+            //Moves servos position so that they are closed
             if (gamepad2.left_stick_button) {
                 sl.setPosition(1);
                 sr.setPosition(1);
             }
 
+            //Runs when the right circular pivot button (or right stick button) is being moved
+            //Moves servos position so that they are open
             if (gamepad2.right_stick_button) {
                 sr.setPosition(.1);
                 sl.setPosition(.1);
