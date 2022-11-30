@@ -37,6 +37,7 @@ public class AutoTestNumber1 extends LinearOpMode {
         sr.setDirection(Servo.Direction.REVERSE);
 
         //Auto code goes below -Cameron
+        //Code makes robot drive fowards for 2 seconds. Idk, I havent tested it. 
         motorFrontLeft.setPower(1);
         motorBackLeft.setPower(1);
         motorFrontRight.setPower(1);
