@@ -85,7 +85,7 @@ public class mechme extends LinearOpMode {
             arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             arm.setPower(1);
             elbowMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            elbowMotor.setPower(1);
+            elbowMotor.setPower(-1);
 
             //Runs when the left stick is pressed down
             //Moves servos position so that they are closed
@@ -121,8 +121,9 @@ public class mechme extends LinearOpMode {
             motorFrontRight.setPower(frontRightPower);
             motorBackRight.setPower(backRightPower);
 
-            telemetry.addData("ArmL data:", arm.getTargetPosition());
-            telemetry.addData("ArmL current:", arm.getCurrentPosition());
+            telemetry.addData("Arm data:", arm.getTargetPosition());
+            telemetry.addData("Arm current:", arm.getCurrentPosition());
+            telemetry.addData("Arm power:", arm.getPower());
             telemetry.addData("20 target:", elbowMotor.getTargetPosition());
             telemetry.addData("20 current:", elbowMotor.getCurrentPosition());
             telemetry.addData("20 power:", elbowMotor.getPower());
