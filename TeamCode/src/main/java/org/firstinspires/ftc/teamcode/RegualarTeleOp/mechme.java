@@ -18,8 +18,8 @@ public class mechme extends LinearOpMode {
         DcMotor motorBackRight = hardwareMap.dcMotor.get("backRight");
         DcMotor arm = hardwareMap.dcMotor.get("andrew"); //Motor attatched to the back of the robot
         DcMotor elbowMotor = hardwareMap.dcMotor.get("20centpotatoes"); // Motor that is locate on the arm
-        Servo sl = hardwareMap.servo.get("s1");
-        Servo sr = hardwareMap.servo.get("sr");
+        Servo sl = hardwareMap.servo.get("s1"); //The left servo
+        Servo sr = hardwareMap.servo.get("sr"); //The right servo
 
 
         // Reverse the right side motors
@@ -79,7 +79,6 @@ public class mechme extends LinearOpMode {
                 elbowJoint = 6;
                 elbowMotor.setTargetPosition(elbowJoint);
             }
-
 
 
             arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
