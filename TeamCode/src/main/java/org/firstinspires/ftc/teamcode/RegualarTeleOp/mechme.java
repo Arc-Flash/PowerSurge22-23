@@ -50,7 +50,7 @@ public class mechme extends LinearOpMode {
         // Runs while the opmode is active
         while (opModeIsActive()) {
 
-            //Runs when
+            //Runs when the button Y is pressed on game=pad 2
             if (gamepad2.y) {
                 arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 elbowMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
