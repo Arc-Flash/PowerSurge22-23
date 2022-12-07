@@ -39,6 +39,7 @@ public class mechme extends LinearOpMode {
         int sholderPosition = 0;
         int elbowJoint = 0;
 
+        boolean sens = false;
         waitForStart();
 
         // continuous loop that runs after after the play button is pushed
@@ -92,20 +93,20 @@ public class mechme extends LinearOpMode {
 
             //Runs when the left stick is pressed down
             //Moves servos position so that they are closed
-            if (gamepad2.left_stick_button) {
-                sl.setPosition(1);
-                sr.setPosition(1);
+            if (gamepad2.left_bumper) {
+                sl.setPosition(.7);
+                sr.setPosition(.7);
             }
 
             //Runs when the right stick is pressed down
             //Moves servos position so that they are open
-            if (gamepad2.right_stick_button) {
-                sr.setPosition(.1);
-                sl.setPosition(.1);
+            if (gamepad2.right_bumper) {
+                sr.setPosition(.3);
+                sl.setPosition(.3);
             }
 
             
-
+            /*
             double y = -gamepad1.left_stick_y; // Remember, this is reversed!
             double x = gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
             double rx = -gamepad1.right_stick_x;
@@ -123,8 +124,30 @@ public class mechme extends LinearOpMode {
             motorBackLeft.setPower(backLeftPower);
             motorFrontRight.setPower(frontRightPower);
             motorBackRight.setPower(backRightPower);
+            */
 
+            double r = Math.hypot(gamepad1.left_stick_x, gamepad1.left_stick_y);
+            double robotAngle = Math.atan2(gamepad1.left_stick_y, gamepad1.left_stick_x) - Math.PI / 4;
+            double rightX = gamepad1.right_stick_x;
+            final double v1 = -r * Math.cos(robotAngle) + rightX;
+            final double v2 = -r * Math.sin(robotAngle) - rightX;
+            final double v3 = -r * Math.sin(robotAngle) + rightX;
+            final double v4 = -r * Math.cos(robotAngle) - rightX;
 
+            if (sens == false) {
+                motorFrontLeft.setPower(v1);
+                motorFrontRight.setPower(v2);
+                motorBackLeft.setPower(v3);
+                motorBackRight.setPower(v4);
+            }
+            else if (sens == true) {
+                motorFrontLeft.setPower(v1/3);
+                motorFrontRight.setPower(v2/3);
+                motorBackLeft.setPower(v3/3);
+                motorBackRight.setPower(v4/3);
+            }
+
+            
             telemetry.addData("20 target:", elbowMotor.getTargetPosition());
             telemetry.addData("20 current:", elbowMotor.getCurrentPosition());
             telemetry.addData("20 power:", elbowMotor.getPower());
